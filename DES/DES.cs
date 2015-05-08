@@ -1,5 +1,5 @@
-﻿//Josh Hickman
-//Cryptography CS 484
+//Josh Hickman
+//Cryptography
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Random Number DES
 
 
@@ -25,15 +25,15 @@ namespace DES
             try
             {
 
-                int original = r.Next(0, 255);
+                int original = r.Next(0, 255);  //Begins with a random number from Random();
 
                 using (DESCryptoServiceProvider myDES = new DESCryptoServiceProvider())
                 {
                     Console.WriteLine("Random Number:   {0}", original);
-                    byte[] encrypted = Encrypt(original, myDES.Key, myDES.IV);
-                    num = Convert.ToInt32(encrypted.Last());
+                    byte[] encrypted = Encrypt(original, myDES.Key, myDES.IV);  //Byte array from encrypted Int
+                    num = Convert.ToInt32(encrypted.Last());                    //Converted byte array back into an Int, giving the first Crypto RNG
 
-                    for (int i = 0; i < 30; i++)
+                    for (int i = 0; i < 30; i++)        //For loop to finish the sequence
                     {
                         encrypted = Encrypt(num, myDES.Key, myDES.IV);
                         num = Convert.ToInt32(encrypted.Last());
